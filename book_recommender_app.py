@@ -2,9 +2,16 @@
 import streamlit as st
 import pickle
 import pandas as pd
-import nltk
-nltk.download('punkt_tab') # added this line
 from sklearn.preprocessing import LabelEncoder
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt_tab') # added this line
+
 
 st.title("📚 Book Recommender")
 
@@ -19,6 +26,10 @@ with open("tfidf_vectorizer.pkl", "rb") as f:
 #load trained meta data
 with open("train_data.pkl", "rb") as f:
     train_data = pickle.load(f)
+
+# load label encoder
+with open("le.pkl", "rb") as f:
+    le = pickle.load(f)
 
 # Input box for book description
 book_description = st.text_input("Enter a book description:")
@@ -40,26 +51,21 @@ def preprocess_text(text):
     # Join the tokens back into a single string separated by spaces
     return ' '.join(tokens)
 
-processed_text = preprocess_text(book_description)
-
-#transform the user input
-user_vector = vectorizer.transform([processed_text])
-
-# Example usage
-n = 20
-description_to_recommend = test_data['combined_text'].iloc[n] # select the description to recommend books
-print("Selected description from test data")
-print(test_data.iloc[n])
-print("")
-
-recommendations = get_recommendations_svm(description_to_recommend, best_model_svm, tfidf_vectorizer, train_data)
-print("")
-print(f"Recommendations: {recommendations[['ISBN', 'title', 'School_ID', 'Year', 'Subject']]}")
-
+# show recommendations
 # Button to recommend
 if st.button("Recommend"):
+  if not book_description.strip():
+        st.warning("Please enter a book description to get recommendations!")
+  else:
+    processed_text = preprocess_text(book_description)
+    user_vector = vectorizer.transform([processed_text])
+
     st.write("Recommendations will appear here.")
+
     # Predict category using SVM
     subject = model.predict(user_vector)
-    st.write(f"Predicted Subject: **{{le.inverse_transform(subject)}}**")
+    st.write(f"Predicted Subject: **{le.inverse_transform(subject)}**")
+
+    # filter books in the same subject
     recommendations = train_data[train_data['Subject'] == le.inverse_transform(subject)[0]]
+    st.write(f"Recommended books: **{recommendations}**")
