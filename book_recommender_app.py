@@ -3,6 +3,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -34,6 +35,17 @@ with open("le.pkl", "rb") as f:
 # Input box for book description
 book_description = st.text_input("Enter a book description:")
 
+def normalize_text(text):
+    # Convert the text to lowercase
+    text = text.lower()
+    # Replace all non-word characters (anything other than a-z, A-Z, 0-9, and underscores) with a space
+    text = re.sub(r'\W', ' ', text)
+    # Replace one or more whitespace characters with a single space and strip leading/trailing spaces
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+text = normalize_text(book_description)
+
 # preprocess the book description
 import nltk
 
@@ -57,7 +69,7 @@ if st.button("Recommend"):
   if not book_description.strip():
         st.warning("Please enter a book description to get recommendations!")
   else:
-    processed_text = preprocess_text(book_description)
+    processed_text = preprocess_text(text)
     user_vector = vectorizer.transform([processed_text])
 
     st.write("Recommendations will appear here.")
