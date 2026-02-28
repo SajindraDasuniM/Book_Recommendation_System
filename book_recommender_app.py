@@ -25,5 +25,5 @@ if st.button("Recommend"):
     st.write("Recommendations will appear here.")
 """
 
-with open("app.py", "w") as f:
+with open("book_recommender_app.py", "w") as f:
     f.write(app_code)
