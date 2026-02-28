@@ -14,7 +14,7 @@ import pandas as pd
 
 st.title("📚 Book Recommender")
 
-with open("model.pkl", "rb") as f:
+with open("best_model_svm.pkl", "rb") as f:
     model = pickle.load(f)
 
 #books = pd.read_csv("books.csv")
