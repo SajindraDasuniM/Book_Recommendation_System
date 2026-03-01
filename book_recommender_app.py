@@ -78,4 +78,18 @@ if st.button("Recommend"):
 
     # filter books in the same subject
     recommendations = train_data[train_data['Subject'] == le.inverse_transform(subject)[0]]
-    st.write(f"Recommended books: **{recommendations}**")
+    
+    #st.write(f"Recommended books: **{recommendations}**")
+    with st.container():
+        st.subheader("✨ Recommended Books")
+
+    for book in recommendations:
+        st.write("### 📘", book['ISBN'])
+        st.write("### 📘", book['title'])
+        st.write("### 📘", book['authors'])
+        st.write("### 📘", book['Subject'])
+        st.write("### 📘", book['Year'])
+        st.write(book['description'][:120] + "...")
+        st.divider()  
+
+    
