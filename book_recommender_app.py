@@ -84,7 +84,7 @@ if st.button("Recommend"):
         st.subheader("✨ Recommended Books")
 
     for book in recommendations:
-        st.write(book['ISBN'])
+        st.write(f"{book['ISBN']}")
         st.write("book['title']")
         st.write("book['authors']")
         st.write("book['Subject']")
