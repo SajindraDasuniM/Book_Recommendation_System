@@ -84,11 +84,11 @@ if st.button("Recommend"):
         st.subheader("✨ Recommended Books")
 
     for book in recommendations:
-        #st.write("### 📘", book['ISBN'])
-        st.write("### 📘", book['title'])
-        st.write("### 📘", book['authors'])
-        st.write("### 📘", book['Subject'])
-        st.write("### 📘", book['Year'])
+        #st.write("book['ISBN'])
+        st.write("book['title'])
+        st.write("book['authors'])
+        st.write("book['Subject'])
+        st.write("book['Year'])
         st.write(book['description'][:120] + "...")
         st.divider()  
 
