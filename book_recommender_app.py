@@ -31,7 +31,7 @@ train_data = joblib.load("train_data.pkl")
 le = joblib.load("le.pkl")
 
 # Input box for book description
-book_description = st.text_input("Enter a book description:")
+book_description = st.text_input("Based on a book description given, app will predict the related subject and recommend school text books. Please enter a book description:")
 
 def normalize_text(text):
     # Convert the text to lowercase
@@ -70,7 +70,7 @@ if st.button("Recommend"):
     processed_text = preprocess_text(text)
     user_vector = vectorizer.transform([processed_text])
 
-    st.write("Based on the book description given, app will predict the related subject and recommended school text books will appear here.")
+    st.write("Recommended school text books will appear here.")
 
     # Predict category using SVM
     subject = model.predict(user_vector)
