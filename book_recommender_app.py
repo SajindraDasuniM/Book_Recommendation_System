@@ -13,6 +13,7 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('punkt_tab') # added this line
 import joblib
+from sklearn.preprocessing import LabelEncoder
 
 
 st.title("📚 Book Recommender")
