@@ -70,7 +70,7 @@ if st.button("Recommend"):
     processed_text = preprocess_text(text)
     user_vector = vectorizer.transform([processed_text])
 
-    st.write("Recommendations will appear here.")
+    st.write("Based on the book description given, app will predict the related subject and recommended school text books will appear here.")
 
     # Predict category using SVM
     subject = model.predict(user_vector)
