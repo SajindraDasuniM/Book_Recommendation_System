@@ -28,7 +28,7 @@ vectorizer = joblib.load("tfidf_vectorizer.pkl")
 train_data = joblib.load("train_data.pkl")
 
 # load label encoder
-le = joblib.load(le.pkl)
+le = joblib.load("le.pkl")
 
 # Input box for book description
 book_description = st.text_input("Enter a book description:")
