@@ -12,25 +12,22 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('punkt_tab') # added this line
+import joblib
 
 
 st.title("📚 Book Recommender")
 
 # Load your model
-with open("best_model_svm.pkl", "rb") as f:
-  model = pickle.load(f)
+model = joblib.load("best_model_svm.pkl")
 
 # Load your vectorizer
-with open("tfidf_vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 #load trained meta data
-with open("train_data.pkl", "rb") as f:
-    train_data = pickle.load(f)
+train_data = joblib.load("train_data.pkl")
 
 # load label encoder
-with open("le.pkl", "rb") as f:
-    le = pickle.load(f)
+le = joblib.load(le.pkl)
 
 # Input box for book description
 book_description = st.text_input("Enter a book description:")
