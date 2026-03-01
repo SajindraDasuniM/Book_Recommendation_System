@@ -74,7 +74,7 @@ if st.button("Recommend"):
 
     # Predict category using SVM
     subject = model.predict(user_vector)
-    st.write(f"Predicted Subject: **{le.inverse_transform(subject)}**")
+    st.write(f"Predicted Subject: **{le.inverse_transform(subject)[0]}**")
 
     # filter books in the same subject
     recommendations = train_data[train_data['Subject'] == le.inverse_transform(subject)[0]]
