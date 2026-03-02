@@ -1,5 +1,5 @@
 # Book_Recommendation_System
-In Australia schools usually rely on the same publisher for textbooks even when the curriculum is changed. Publishers cannot be easily changed as it requires significant investment of time by the school staff. This is due to the unavailability of list of textbooks suitable for each subject and grade.
+Schools usually rely on the same publisher for textbooks even when the curriculum is changed. Publishers cannot be easily changed as it requires significant investment of time by the school staff. This is due to the unavailability of list of textbooks suitable for each subject and grade.
 
 Built an end-to-end book recommender system using scikit-learn, Streamlit and NLP to predict the subject based on a given description and suggest similar textbooks for schools. Used GoogleBook and OpenLibrary APIs to collect metadata. Implemented text preprocessing: tokenization, stopword removal, and lemmatization using NLTK. 
 Trained three models: NN(unsupervised), KNN and SVM to predict the subject. SVM showed the highest(83%) accuracy in predicting subject. Implemented a recommender to suggest relevant textbooks based on predicted subject. 
